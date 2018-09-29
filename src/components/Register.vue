@@ -51,7 +51,6 @@ export default {
         position:relative;
         display: flex;
         flex-direction: column;
-
         input{
             width: 80vw;
             margin: 0 auto;

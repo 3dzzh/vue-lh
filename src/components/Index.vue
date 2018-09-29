@@ -2,6 +2,7 @@
     <div>
         <header>
             <div class="top">
+                <img src="../assets/img/xiaoyu.svg" alt="">
                 <h1>
                     <div class="logo">个人中心</div>
                 </h1>
@@ -10,10 +11,10 @@
                 <img src="../assets/img/banner.png" alt="">
                 <nav>
                     <ul>
-                        <li class="li1">独家代理</li>
-                        <li class="li2">肺迪简介</li>
-                        <li class="li3">招商引资</li>
-                        <li class="li4">我的订单</li>
+                        <router-link to="/agent"><li class="li1">独家代理</li></router-link>
+                        <router-link to="/briefintroduce"><li class="li2">肺迪简介</li></router-link>
+                        <router-link to="/bussiness"><li class="li3">招商引资</li></router-link>
+                        <router-link to="/order"><li class="li4">我的订单</li></router-link>
                     </ul>
                 </nav>
             </div>
@@ -36,24 +37,24 @@
             <div class="main-down">
                 <h3>热点新闻</h3>
                 <div>
-                    <img src="../assets/img/meiguolao_16.png" alt="">
+                    <router-link to="/news"><img src="../assets/img/meiguolao_16.png" alt=""></router-link>
                     <div>
-                        <p>北京郎恒安生物科技有限公司核心团队由多名海外学者昨中国......</p>
-                        <span>查看更多</span>
+                        <p><router-link to="/news">北京郎恒安生物科技有限公司核心团队由多名海外学者昨中国......</router-link></p>
+                        <span><router-link to="/news">查看更多</router-link></span>
                     </div>
                 </div>
                 <div>
-                    <img src="../assets/img/meiguolao_16.png" alt="">
+                    <router-link to="/news"><img src="../assets/img/meiguolao_16.png" alt=""></router-link>
                     <div>
-                        <p>北京郎恒安生物科技有限公司核心团队由多名海外学者昨中国......</p>
-                        <span>查看更多</span>
+                        <p><router-link to="/news">北京郎恒安生物科技有限公司核心团队由多名海外学者昨中国......</router-link></p>
+                        <span><router-link to="/news">查看更多</router-link></span>
                     </div>
                 </div>
                 <div>
-                    <img src="../assets/img/meiguolao_16.png" alt="">
+                    <router-link to="/news"><img src="../assets/img/meiguolao_16.png" alt=""></router-link>
                     <div>
-                        <p>北京郎恒安生物科技有限公司核心团队由多名海外学者昨中国......</p>
-                        <span>查看更多</span>
+                        <p><router-link to="/news">北京郎恒安生物科技有限公司核心团队由多名海外学者昨中国......</router-link></p>
+                        <span><router-link to="/news">查看更多</router-link></span>
                     </div>
                 </div>
                 <span>查看更多</span>
@@ -63,7 +64,7 @@
             <div class="nav">
                 <ul>
                     <li><img class="img0" src="../assets/img/shouye_16(1).png" alt=""> 首页</li>
-                    <li><img src="../assets/img/geren_16.png" alt=""> 个人中心</li>
+                    <li><router-link to="/person" tag="li" active-class="active"><img src="../assets/img/geren_16.png" alt=""> 个人中心</router-link></li>
                     <li><img src="../assets/img/feidi-footer_19.png" alt=""> 肺迪</li>
                     <li><img src="../assets/img/guanyuwomen_21.png" alt=""> 关于我们</li>
                 </ul>
@@ -78,23 +79,25 @@ export default {
 </script>
 <style lang="scss" scoped>
 .top {
-  margin: 0;
-  padding: 0;
+  display: flex;
+  align-items: center;
   background-color: #000;
-  background-image: url("../assets/img/xiaoyu.svg");
-  background-repeat: no-repeat;
-  background-position: 5vw center;
-  background-size: 7vw;
   padding: 3vw 0;
+  img{
+    display: block;
+    width: 7vw;
+    height: 7vw;
+  }
   h1 {
     margin: 0;
+    padding: 0;
+    margin-left: 28vw;
   }
   h1 .logo {
-    width: 25vw;
+    width: 24vw;
     color: #fff;
     font-size: 6vw;
     font-weight: normal;
-    margin: 0 auto;
   }
 }
 .banner {
@@ -224,15 +227,18 @@ export default {
         font-size: 4vw;
         margin-left: 2vw;
       }
-      span {
-        margin-left: 35vw;
+      >span {
+        width: 18vw;
+        margin: 0;
+        padding: 0;
+        margin-left: 44vw;
         color: orange;
       }
     }
     span{
-        padding:3vw 0;
+        width: 18vw;
         color:gray;
-        text-align:center;
+        margin:3vw auto;
     }
   }
 }
@@ -257,6 +263,9 @@ footer {
         .img0 {
           width: 10vw;
         }
+      }
+      .active{
+        display: flex;
       }
     }
   }

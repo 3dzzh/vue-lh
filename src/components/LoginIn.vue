@@ -1,5 +1,6 @@
 <template>
     <div>
+    <div class="wrap" v-show="show"></div>
     <div class="header">
         <div class="top">
         <img src="../assets/img/back_03.png" alt="">
@@ -11,15 +12,18 @@
         </div>
     </div>
     <div class="main">
-        <input type="text" placeholder="手机号码/用户名" ref="users" />
-        <input type="password" placeholder="密码" ref="passwords" />
+        <input type="text" v-model="user" placeholder="手机号码/用户名" ref="users" />
+        <input type="password" v-model="password" placeholder="密码" ref="passwords" />
         <img src="../assets/img/login.svg" alt="" >
         <img class="img1" src="../assets/img/mima.svg" alt="">
-        <router-link to="/index"><button @click="handle">
-             
+        <button v-if="!Login" @click="handle">
             登录
         </button>
-        </router-link>
+        <div class="cpm" v-show="show">
+            <span v-if="Login">登陆成功!!!</span>
+            <span v-else>登录失败!!!</span>
+            <el-button @click="click">确定</el-button>
+        </div>
         <div>
         <span>手机快捷登录</span>
         <span>忘记密码</span>
@@ -35,12 +39,31 @@
 export default {
     name:'LoginIn',
     data:()=>({
-        user:18332571995,
-        password:123456
+        user:'',
+        password:'',
+        show:false
     }),
     methods:{
         handle(){
-           this.$refs.users.placeholder = this.user 
+            console.log( typeof this.password)            
+            this.$store.commit('isCurrent',{user:this.user,password:this.password})
+            this.show = true
+        },
+        click(){
+            this.show = false
+            if(this.$store.state.login.login){
+                this.$router.push('/index')
+            }
+        }
+    },
+        mounted(){
+        if(this.$store.state.login.login){
+        this.$router.push('/index')
+        }
+    },
+    computed:{
+        Login(){
+            return this.$store.state.login.login
         }
     }
 }
@@ -67,7 +90,6 @@ export default {
         margin: 0;
     }
     }
-
     .main{
         position:relative;
         display: flex;
@@ -115,6 +137,32 @@ export default {
         .img1{
             top:21vw;
         }
+        .cpm{
+            position:absolute;
+            z-index:25;
+            margin-left: 10vw;
+            padding:5vw 0;
+            background-color: #fff;
+            .el-button{
+                width: 15vw;
+            }
+        span{
+            margin-left: 25vw;
+        }
+        
+        }
+        
+    }
+    .wrap{
+            width: 100%;
+            height: 100%;
+            position:absolute;
+            z-index:20;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            background-color: rgba(0,0,0,0.5);
     }
     footer{
         display: flex;
